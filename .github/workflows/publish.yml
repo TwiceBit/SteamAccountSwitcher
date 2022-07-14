@@ -7,7 +7,7 @@ on:
 
 env:
   DOTNET_VERSION: '6.x'
-  OUTPUT_ARTIFACT_FILENAME: 'SteamAccountSwitcher_Win-x86.zip'
+  OUTPUT_ARTIFACT_FILENAME: 'SteamAccountSwitcher_Win10-x86.zip'
   TAG_NAME: ${{ github.run_id }}-${{ github.run_number }}
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       - name: 🛠️ Build
         run: |
             dotnet build --configuration Release --no-restore
-            dotnet publish --self-contained -c Release -o ./output -r win-x86 -p:PublishReadyToRun=true
+            dotnet publish --self-contained -c Release -f "net6.0-windows10.0.17763.0" -o ./output -r win-x86 -p:PublishReadyToRun=true
 
       - name: 👨‍⚕️ Run Unit Tests
         run: dotnet test --no-restore --verbosity normal
